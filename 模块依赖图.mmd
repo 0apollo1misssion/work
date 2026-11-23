@@ -1,0 +1,26 @@
+flowchart TD
+  subgraph L4[应用层]
+    coding["coding-agent"]
+    env["env"]
+  end
+  subgraph L3[Agent 与持久运行层]
+    agent["agent"]
+    durable["durable"]
+  end
+  subgraph L2[模型与对象运行层]
+    ai["ai"]
+    chord["chord"]
+  end
+  subgraph L1[基础能力层]
+    schema["schema"]
+    telemetry["telemetry"]
+    tui["tui"]
+    codemode["codemode"]
+    mcp["mcp"]
+  end
+  coding --> agent & ai & tui & codemode & mcp
+  env --> chord & durable
+  agent --> ai & schema
+  durable --> chord & ai & codemode & schema & telemetry
+  ai --> schema & telemetry
+  chord --> schema & telemetry
